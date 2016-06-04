@@ -1,6 +1,7 @@
 var gutil = require('gulp-util')
-var yml = require('yaml')
+var yml = require('js-yaml')
 var request = require('request')
+
 function string_src (filename, string) {
   var src = require('stream').Readable({ objectMode: true })
   src._read = function () {
@@ -16,7 +17,7 @@ function downloadLocales (options) {
   var stream = require('merge-stream')()
   request(`https://api.localeapp.com/v1/projects/${options.apiKey}/translations/all.yml`, function (err, raw, body) {
     if (err) throw err
-    var languages = yml.eval(body)
+    var languages = yml.load(body)
     Object.keys(languages).map(function (key) {
       var string = JSON.stringify(languages[key], null, 2)
       stream.add(string_src(`${key}.json`, string))
