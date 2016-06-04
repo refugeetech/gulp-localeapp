@@ -14,7 +14,16 @@ Example
 
     gulp.task('localeapp', function (done) {
       return localeapp({apiKey: 'yourapikey'})
-        .pipe(gulp.dest('path/to/json'))
+        .pipe(gulp.dest('translations/'))
+    })
+
+
+Use with Angular-translate
+
+    gulp.task('translate', ['localeapp'], function () {
+      return gulp.src('translations/*.json')
+        .pipe(angularTranslate({ module: 'app' }))
+        .pipe(gulp.dest('www/js/configuration'))
     })
 
 
