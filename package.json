@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "gulp-util": "^3.0.7",
+    "merge-stream": "^1.0.0",
     "request": "^2.72.0",
     "yaml": "^0.3.0"
   }
