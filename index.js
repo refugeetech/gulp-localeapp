@@ -18,7 +18,7 @@ function downloadLocales (options) {
     if (err) throw err
     var languages = yml.eval(body)
     Object.keys(languages).map(function (key) {
-      var string = JSON.stringify(languages[key])
+      var string = JSON.stringify(languages[key], null, 2)
       stream.add(string_src(`${key}.json`, string))
     })
   })
