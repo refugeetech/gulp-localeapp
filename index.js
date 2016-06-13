@@ -15,12 +15,12 @@ function downloadLocales (options) {
   if (!options || !options.apiKey) throw new Error('options.apiKey is required')
 
   var stream = require('merge-stream')()
-  request(`https://api.localeapp.com/v1/projects/${options.apiKey}/translations/all.yml`, function (err, raw, body) {
+  request('https://api.localeapp.com/v1/projects/${options.apiKey}/translations/all.yml', function (err, raw, body) {
     if (err) throw err
     var languages = yml.load(body)
     Object.keys(languages).map(function (key) {
       var string = JSON.stringify(languages[key], null, 2)
-      stream.add(string_src(`${key}.json`, string))
+      stream.add(string_src('${key}.json', string))
     })
   })
   return stream
